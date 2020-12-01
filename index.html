@@ -6,11 +6,33 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-  <link rel="stylesheet" type="text/css" href="style.css">
-
+  <link rel="stylesheet" type="text/css" href="css/style.css">
+  <link rel="shortcut icon" href="#">
   <!-- p5 -->
   <script src="https://cdn.jsdelivr.net/npm/p5@1.1.9/lib/p5.js"></script>
-  <script src="sketch.js"></script>
+  <script src="script/loader.js"></script>
+  <script src="script/sketch.js"></script>
+  <script  id="vertex-shader" type="x-shader/x-vertex">
+    attribute vec2 a_position;
+    
+    uniform mat3 u_matrix;
+    
+    void main() {
+      // Multiply the position by the matrix.
+      gl_Position = vec4((u_matrix * vec3(a_position, 1)).xy, 0, 1);
+    }
+  </script>
+  
+  <!-- fragment shader -->
+  <script  id="fragmentmnd-shader" type="x-shader/x-fragment">
+    precision mediump float;
+    
+    uniform vec4 u_color;
+    
+    void main() {
+      gl_FragColor = u_color;
+    }
+  </script>
 
   <!-- bootstrap material design -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons">
@@ -28,7 +50,7 @@
   <div class="container">
     <div class="row">
       <div class="col-sm" id="asd">
-        
+        <canvas id="renderer"></canvas>
       </div>
       <div class="col-sm">
         Одна из трёх колонок
@@ -38,7 +60,9 @@
       </div>
     </div>
   </div>
-
+  <a id="download" download="image.png"><button type="button" onClick="download()">Download</button></a>
+  
+   
 
 </body>
 
