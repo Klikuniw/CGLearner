@@ -1,0 +1,22 @@
+.sidebar{
+  background-color: black;
+}
+
+body, html {
+  height: 100%;
+}
+
+.centered{
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.centered-block{
+  margin: auto;
+
+}
+
+body {
+         overflow:hidden;
+       }
